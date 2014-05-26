@@ -1,6 +1,6 @@
 
-  var levelData = { //array to describe alien layout on canvas
-     1:  [[0,0,0,0,0,0,0,0,0,0,0],
+  var levelData = { //array to describe alien layout on canvas 
+     1:  [[0,0,0,0,2,2,2,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
@@ -24,11 +24,11 @@
           [0,0,1,1,1,1,1,1,1,1,0]] };
 
   var spriteData = {
-    'alien1': { sx: 0,  sy: 0,  w: 23, h: 18, cls: Alien, frames: 2 },
-    'alien2': { sx: 0,  sy: 18, w: 23, h: 18, cls: Alien, frames: 2 },
-    'player': { sx: 0,  sy: 36, w: 26, h: 17, cls: Player },
+    'alien1': { sx: 406,  sy: 30,  w: 25, h: 30, cls: Alien, frames: 2 },
+    'alien2': { sx: 333,  sy: 16, w: 42, h: 33, cls: Alien, frames: 2 },
+    'player': { sx: 0,  sy: 0, w: 73, h: 71, cls: Player },
     'missile': { sx: 0,  sy: 86, w: 3,  h: 14, cls: Missile }
-  }
+  } 
 
   function startGame() {//function to start game
     var screen = new GameScreen("Alien Invaders","press space to start",

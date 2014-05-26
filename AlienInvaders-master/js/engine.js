@@ -24,20 +24,20 @@ var Game = new function() {
   this.loadBoard = function(board) { Game.board = board; };
 
   this.loop = function() { 
-    Game.board.step(300/1000);//game speed controls 
+    Game.board.step(30/1000);//game speed controls 
     Game.board.render(Game.canvas);
-    setTimeout(Game.loop,30);//the hight the num the slower the game
+    setTimeout(Game.loop,30);//the higher the loop the slower the game
   };
 };
 
-var Sprites = new function() {
+var Sprites = new function() {//sprites function
   this.map = { }; 
 
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
     this.image = new Image();
     this.image.onload = callback;
-    this.image.src = 'images/sprites.png';
+    this.image.src = 'images/sprites2.png';//source for the sprites
   };
 
   this.draw = function(canvas,sprite,x,y,frame) {
