@@ -98,7 +98,7 @@ Player.prototype.die = function() {
   Game.callbacks['die']();
 }
 
-Player.prototype.step = function(dt) {
+Player.prototype.step = function(dt) {//function which uses player control variables declared in engine.js
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
 

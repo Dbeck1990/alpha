@@ -1,5 +1,5 @@
 
-  var levelData = { 
+  var levelData = { //array to describe alien layout on canvas
      1:  [[0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
@@ -30,7 +30,7 @@
     'missile': { sx: 0,  sy: 86, w: 3,  h: 14, cls: Missile }
   }
 
-  function startGame() {
+  function startGame() {//function to start game
     var screen = new GameScreen("Alien Invaders","press space to start",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
@@ -39,7 +39,7 @@
     Game.loop();
   }
 
-  function endGame() {
+  function endGame() {//function to lose game
     var screen = new GameScreen("Game Over","(press space to restart)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
@@ -48,7 +48,7 @@
   }
 
 
-  function winGame() {
+  function winGame() {//function to win game
     var screen = new GameScreen("You Win!","(press space to restart)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
@@ -56,7 +56,7 @@
     Game.loadBoard(screen);
   }
 
-  $(function() {
+  $(function() {//function to load audio
     GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg' }, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
