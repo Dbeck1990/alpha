@@ -42,7 +42,7 @@ var Sprites = new function() {//sprites function
 
   this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
-    if(!frame) frame = 0;
+    if(!frame) frame = 0;//if frame 0, draw this part of the sprite sheet
     canvas.drawImage(this.image, s.sx + frame * s.w, s.sy, s.w, s.h, x,y, s.w, s.h);
   };
 }
@@ -83,9 +83,9 @@ var GameBoard = function GameBoard(level_number) {
   };
   
 
-  this.iterate = function(func) {
+   this.iterate = function(func) {
      for(var i=0,len=this.objects.length;i<len;i++) {
-       func.call(this.objects[i]);
+    func.call(this.objects[i]);
      }
   };
 
