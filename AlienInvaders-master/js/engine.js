@@ -43,7 +43,7 @@ var Sprites = new function() {//sprites function
   this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
     if(!frame) frame = 0;//if frame 0, draw this part of the sprite sheet
-    canvas.drawImage(this.image, s.sx + frame * s.w, s.sy, s.w, s.h, x,y, s.w, s.h);
+    canvas.drawImage(this.image, s.sx + frame * s.w, s.sy, s.w, s.h, x,y, s.w, s.h);//then draw the image and the others next to it as frame iterates 
   };
 }
 
