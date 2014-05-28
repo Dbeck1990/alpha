@@ -50,7 +50,7 @@ var Alien = function Alien(opts) {
   this.mx = 0;
 }
 
-Alien.prototype.draw = function(canvas) {
+Alien.prototype.draw = function(canvas) {//
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
 }
 
@@ -60,7 +60,7 @@ Alien.prototype.die = function() {
   this.board.remove(this);
 }
 
-Alien.prototype.step = function(dt) {
+Alien.prototype.step = function(dt) {//function to control how the alien moves
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
   if(Math.abs(this.mx) > 10) {
@@ -77,7 +77,7 @@ Alien.prototype.step = function(dt) {
 }
 
 Alien.prototype.fireSometimes = function() {
-      if(Math.random()*100 < 10) {
+      if(Math.random()*100 < 10) {//when random number returns less than 10 fire.
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
@@ -88,7 +88,7 @@ var Player = function Player(opts) {
   this.reloading = 0;
 }
 
-Player.prototype.draw = function(canvas) {
+Player.prototype.draw = function(canvas) {//draws the player onto the canvas
    Sprites.draw(canvas,'player',this.x,this.y);
 }
 
@@ -102,7 +102,7 @@ Player.prototype.step = function(dt) {//function which uses player control varia
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
 
-  if(this.x < 0) this.x = 0;
+  if(this.x < 0) this.x = 0;//if statement to stop player leaving canvas on the x axis
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
 
   this.reloading--;
