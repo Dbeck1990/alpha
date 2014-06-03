@@ -1,13 +1,14 @@
-var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };//declare variables for controls
-  this.keys = {};
+var Game = new function() { //Beginning of game function                                                           
+  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };//declare variables for controls giving them names alongside the keyboard numbers for the keys
+  this.keys = {}; //this key but left empty??
 
+    //initialises canvas
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
-    this.canvas_elem = $(canvas_dom)[0];
-    this.canvas = this.canvas_elem.getContext('2d');
+    this.canvas_elem = $(canvas_dom)[0];//???
+    this.canvas = this.canvas_elem.getContext('2d');//
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');
-
+//Here the control input is gathered
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
     });
@@ -23,14 +24,18 @@ var Game = new function() {
 
   this.loadBoard = function(board) { Game.board = board; };
 
+    
+    //Speed of game controlled in this function
   this.loop = function() { 
     Game.board.step(30/1000);//game speed controls 
     Game.board.render(Game.canvas);
     setTimeout(Game.loop,30);//the higher the loop the slower the game
   };
-};
+};//end of Game function
 
-var Sprites = new function() {//sprites function
+
+//Where the sprites data is loaded in
+var Sprites = new function() {//Beginning of Sprites function
   this.map = { }; 
 
   this.load = function(sprite_data,callback) { 
@@ -45,9 +50,9 @@ var Sprites = new function() {//sprites function
     if(!frame) frame = 0;//if frame 0, draw this part of the sprite sheet
     canvas.drawImage(this.image, s.sx + frame * s.w, s.sy, s.w, s.h, x,y, s.w, s.h);//then draw the image and the others next to it as frame iterates 
   };
-}
-
-var GameScreen = function GameScreen(text,text2,callback) {
+}// end of Sprites function
+//This is where the starts screen is created
+var GameScreen = function GameScreen(text,text2,callback) {//beginning of GameScreen function
   this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
   };
@@ -62,9 +67,9 @@ var GameScreen = function GameScreen(text,text2,callback) {
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
   };
-};
+};//end of game screen function
 
-var GameBoard = function GameBoard(level_number) {
+var GameBoard = function GameBoard(level_number) {//beginning of GameBoard function
   this.removed_objs = [];
   this.missiles = 0;
   this.level = level_number;
@@ -150,9 +155,9 @@ var GameBoard = function GameBoard(level_number) {
   };
  
   this.loadLevel(Game.level_data[level_number]);
-};
+};//end og GameBoard function
 
-var GameAudio = new function() {
+var GameAudio = new function() {//beginning of GameAudio function
   this.load_queue = [];
   this.loading_sounds = 0;
   this.sounds = {};
@@ -198,5 +203,5 @@ var GameAudio = new function() {
       }
     }
   };
-};
+};//end of Game Audio function
 

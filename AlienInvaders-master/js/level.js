@@ -23,7 +23,7 @@
           [0,0,1,1,1,1,1,1,1,1,0],
           [0,0,1,1,1,1,1,1,1,1,0]] };
 
-  var spriteData = {
+  var spriteData = {//start of spriteData, which is itself an object??? but seemingly made up from strings?
     'alien1': { sx: 342,  sy: 67,  w: 25, h: 30, cls: Alien, frames: 6},//draws Alien 1 on the level, uses the coordinates from the Sx and Sy of the height and width under W,H gives it the class of alien and specifices the number of frames for each image, same for each of the sprite_data entires
     'alien2': { sx: 336,  sy: 16, w: 40, h: 40, cls: Alien, frames: 6 },
     'alien3': { sx: 330,  sy: 102,  w:50, h: 60, cls: Alien, frames: 6 }, 
