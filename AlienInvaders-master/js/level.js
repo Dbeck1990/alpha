@@ -84,7 +84,7 @@ switch(player)  {
 //score stuff
 
   $(function() {//function to load audio
-    GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg' }, 
+    GameAudio.load({ 'fire' : 'media/Missile+1.ogg', 'die' : 'media/Alien_death.ogg' }, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
                                       { "start": startGame,
