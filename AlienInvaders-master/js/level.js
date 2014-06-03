@@ -40,7 +40,7 @@
     'alien3': { sx: 330,  sy: 102,  w:50, h: 60, cls: Alien, frames: 6 }, 
     'player': { sx: 0,  sy: 0, w: 73, h: 71, cls: Player },
     'missile': { sx: 361,  sy: 159, w: 5,  h: 10, cls: Missile },
-    'alienmissile': {sx: 0, sy: 0, w: 5, h: 5, cls: alienMissile },
+    'alienmissile': {sx: 341, sy: 158, w: 12, h: 12, cls: alienMissile },
   } 
 
   function startGame() {//function to start game
