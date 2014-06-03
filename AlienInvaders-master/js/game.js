@@ -52,7 +52,7 @@ var Alien = function Alien(opts) {//Start of Alien function(Object constructor?)
 
 Alien.prototype.draw = function(canvas) {//Draws the Alien, using 
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
-}
+}//end of draw function
 
 Alien.prototype.die = function() {//start of alien die function
   GameAudio.play('die');
@@ -83,6 +83,10 @@ Alien.prototype.fireSometimes = function() {//alien shooting function
                                      { dy: 100 });
       }
 }//end of alien shooting function
+//beginning of extra ships
+
+
+//end of extra ships
 
 var Player = function Player(opts) { 
   this.reloading = 0;
@@ -101,20 +105,24 @@ Player.prototype.die = function() {//start of player die function
 Player.prototype.step = function(dt) {//start of control function(parses in information from engine.js)
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
-
+  if(Game.keys['up']) {this.y -=100 * dt;}
+  if(Game.keys['down']) {this.y += 100 * dt;}
+    
   if(this.x < 0) this.x = 0;//if statement to stop player leaving canvas on the x axis
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
-
+  if(this.y < 0) this.y = 0;
+  if(this.y > Game.height-this.h) this.y = Game.height-this.h;
+    
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 100) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
                           { dy: -100, player: true });
     this.board.missiles++;
-    this.reloading = 10;
+    this.reloading = 5;
   }
   return true;
 }//end of player control
@@ -145,3 +153,4 @@ Missile.prototype.die = function() {//missle die function
   if(this.board.missiles < 0) this.board.missiles=0;
    this.board.remove(this);
 }//end of missie die function
+

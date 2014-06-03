@@ -1,5 +1,5 @@
 var Game = new function() { //Beginning of game function                                                           
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };//declare variables for controls giving them names alongside the keyboard numbers for the keys
+  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire', 38:'up',40:'down' };//declare variables for controls giving them names alongside the keyboard numbers for the keys
   this.keys = {}; //this key but left empty??
 
     //initialises canvas
@@ -129,7 +129,7 @@ var GameBoard = function GameBoard(level_number) {//beginning of GameBoard funct
        return board.collision(obj,this) ? this : false;
     });
   };
-
+    
   this.loadLevel = function(level) {
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
