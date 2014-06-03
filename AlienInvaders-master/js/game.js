@@ -79,7 +79,7 @@ Alien.prototype.step = function(dt) {//start of movement function
 
 Alien.prototype.fireSometimes = function() {//alien shooting function
       if(Math.random()*100 < 10) {//when random number returns less than 10 fire.
-        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
+        this.board.addSprite('alienmissile',this.x + this.w/2 - Sprites.map.alienmissile.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
       }
@@ -149,6 +149,33 @@ Missile.prototype.step = function(dt) {//missle movement
 }//end of missle movement
 
 Missile.prototype.die = function() {//missle die function
+  if(this.player) this.board.missiles--;
+  if(this.board.missiles < 0) this.board.missiles=0;
+   this.board.remove(this);
+}//end of missie die function
+
+//alien missle??
+var alienMissile = function alienMissile(opts) {//start of misssle function
+   this.dy = opts.dy;
+   this.player = opts.player;
+}//end of missle function
+
+alienMissile.prototype.draw = function(canvas) {//start of missle draw
+   Sprites.draw(canvas,'alienmissile',this.x,this.y);
+}//end of missle draw
+
+alienMissile.prototype.step = function(dt) {//missle movement
+   this.y += this.dy * dt;
+
+   var enemy = this.board.collide(this);
+   if(enemy) { 
+     enemy.die();
+     return false;
+   }
+   return (this.y < 0 || this.y > Game.height) ? false : true;
+}//end of missle movement
+
+alienMissile.prototype.die = function() {//missle die function
   if(this.player) this.board.missiles--;
   if(this.board.missiles < 0) this.board.missiles=0;
    this.board.remove(this);
