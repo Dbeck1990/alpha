@@ -2,20 +2,42 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Alien Invaders</title>
+  <title>Space Invaders by Nicole Cook</title> 
+    <style>
+      #gameboard { 
+	  background-color:#376bd6; 
+	  } 
+      #game-wrapper { 
+	  margin:20px; width: 500px; 
+	  }
+	  #playerScore { 
+	  color:#376bd6; 
+	  font-size:36px;
+	  font-family:"biteBullet";
+	  }
+      @font-face {
+        font-family:"biteBullet";
+          src: url("fonts/biteBullet.ttf");
+}
+	  /*
+	  css used to change the colour of the background, the margin around the game canvas and the font used throughout the game
+	  */
+  </style>
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
   <script src='js/engine.js'></script>
   <script src='js/game.js'></script>
   <script src='js/level.js'></script>
-
-  <style>
-      #gameboard { background-color:black; }
-      #game-wrapper { margin:0 auto; width: 500px; }
-  </style>
 </head>
 <body>
   <div id='game-wrapper'>
-    <canvas id='gameboard' width='500' height='500'></canvas>
+  <div id='scoreboard'>
+  <div id='playerScore'>
+</div>
+    <canvas id='gameboard' width='600' height='560'>
+</canvas> 
+    <!-- 
+    size of the game canvas, needs to be suitable for multiple screens
+    -->
   </div>
 </body>
 </html>

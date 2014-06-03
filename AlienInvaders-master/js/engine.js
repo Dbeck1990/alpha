@@ -8,6 +8,9 @@ var Game = new function() { //Beginning of game function
     this.canvas = this.canvas_elem.getContext('2d');//
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');
+    this.playerScore =0//score stuff
+      
+      
 //Here the control input is gathered
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
@@ -27,6 +30,7 @@ var Game = new function() { //Beginning of game function
     
     //Speed of game controlled in this function
   this.loop = function() { 
+      document.getElementById('playerScore').innerHTML = Game.playerScore;//score stuff
     Game.board.step(30/1000);//game speed controls 
     Game.board.render(Game.canvas);
     setTimeout(Game.loop,30);//the higher the loop the slower the game
@@ -87,6 +91,15 @@ var GameBoard = function GameBoard(level_number) {//beginning of GameBoard funct
     return sprite;
   };
   
+    var playerScore = 0;//score stuff
+
+this.render = function(canvas)	{//scorestuff
+    canvas.font = "80px biteBullet";
+    var measure = canvas.measureText(text);  
+	canvas.fillStyle = "#ff81b6"; //colour of font used
+	canvas.fillText( "score:" + playerScore + "score:", 100, 100); //scoreboard text and coordinates
+	Game.playerScore++
+}
 
    this.iterate = function(func) {
      for(var i=0,len=this.objects.length;i<len;i++) {
@@ -102,6 +115,14 @@ var GameBoard = function GameBoard(level_number) {//beginning of GameBoard funct
   };
 
   this.step = function(dt) { 
+      
+      //alienship
+      
+      //end alienship
+      
+      
+      
+      
     this.removed_objs = [];
     this.iterate(function() { 
         if(!this.step(dt)) this.die();

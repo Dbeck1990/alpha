@@ -26,7 +26,7 @@ var AlienFlock = function AlienFlock() {//Beginning of AlienFlock function
 
     var max = {}, cnt = 0;
     this.board.iterate(function() {
-      if(this instanceof Alien )  {
+      if(this instanceof Alien )  {//if the class alien then
         if(!max[this.x] || this.y > max[this.x]) {
           max[this.x] = this.y; 
         }
@@ -41,9 +41,6 @@ var AlienFlock = function AlienFlock() {//Beginning of AlienFlock function
   };
 
 }//Ending of AlienFlock function
-//big alien flock
-
-//bigalineflock
 
 var Alien = function Alien(opts) {//Start of Alien function(Object constructor?)
   this.flock = opts['flock'];
@@ -56,6 +53,7 @@ Alien.prototype.draw = function(canvas) {//Draws the Alien, using
 }//end of draw function
 
 Alien.prototype.die = function() {//start of alien die function
+     Game.playerScore+=10//score stuff
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
@@ -83,6 +81,8 @@ Alien.prototype.fireSometimes = function() {//alien shooting function
                                       this.y + this.h, 
                                      { dy: 100 });
       }
+    
+
 }//end of alien shooting function
 //alien big starts
 
