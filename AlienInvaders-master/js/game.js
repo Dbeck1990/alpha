@@ -83,10 +83,49 @@ Alien.prototype.fireSometimes = function() {//alien shooting function
                                      { dy: 100 });
       }
 }//end of alien shooting function
-//beginning of extra ships
+//alien big starts
+var AlienBig = function AlienBig(opts) {//Start of Alien function(Object constructor?)
+  this.flock = opts['flock'];
+  this.frame = 0;
+  this.mx = 0;
+}//end of Alien function
+
+AlienBig.prototype.draw = function(canvas) {//Draws the Alien, using 
+  Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
+}//end of draw function
+
+AlienBig.prototype.die = function() {//start of alien die function
+  GameAudio.play('die');
+  this.flock.speed += 1;
+  this.board.remove(this);
+}//end of alien die function
+
+AlienBig.prototype.step = function(dt) {//start of movement function
+  this.mx += dt * this.flock.dx;
+  this.y += this.flock.dy;
+  if(Math.abs(this.mx) > 10) {
+    if(this.y == this.flock.max_y[this.x]) {
+      this.fireSometimes();
+    }
+    this.x += this.mx;
+    this.mx = 0;
+    this.frame = (this.frame+5) % 2;
+    if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
+    if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
+  }
+  return true;
+}//end of alien move function
+
+AlienBig.prototype.fireSometimes = function() {//alien shooting function
+      if(Math.random()*100 < 90) {//when random number returns less than 10 fire.
+        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
+                                      this.y + this.h, 
+                                     { dy: 100 });
+      }
+}//end of alien shooting function
 
 
-//end of extra ships
+//alien big ends
 
 var Player = function Player(opts) { 
   this.reloading = 0;
