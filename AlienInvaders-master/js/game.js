@@ -77,7 +77,7 @@ Alien.prototype.step = function(dt) {//start of movement function
 }//end of alien move function
 
 Alien.prototype.fireSometimes = function() {//alien shooting function
-      if(Math.random()*100 < 20) {//when random number returns less than 10 fire.
+      if(Math.random()*100 < 10) {//when random number returns less than 10 fire.
           GameAudio.play('alienFire');
         this.board.addSprite('alienmissile',this.x + this.w/2 - Sprites.map.alienmissile.w/2,
                                       this.y + this.h, 
@@ -117,7 +117,7 @@ Player.prototype.step = function(dt) {//start of control function(parses in info
     
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 6) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 10) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,

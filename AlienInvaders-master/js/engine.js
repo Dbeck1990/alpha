@@ -1,3 +1,5 @@
+var Name
+Name = prompt("Who are you?");
 var Game = new function() { //Beginning of game function                                                           
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire', 38:'up',40:'down' };//declare variables for controls giving them names alongside the keyboard numbers for the keys
   this.keys = {}; //this key but left empty??
@@ -94,9 +96,9 @@ var GameBoard = function GameBoard(level_number) {//beginning of GameBoard funct
     var playerScore = 0;//score stuff
 
 this.render = function(canvas)	{//scorestuff
-    canvas.font = "80px biteBullet";
+    canvas.font = "36px stencil";
     var measure = canvas.measureText(text);  
-	canvas.fillStyle = "#ff81b6"; //colour of font used
+	canvas.fillStyle = "black"; //colour of font used
 	canvas.fillText( "score:" + playerScore + "score:", 100, 100); //scoreboard text and coordinates
 	Game.playerScore++
 }
