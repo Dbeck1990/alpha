@@ -1,5 +1,6 @@
-var Name
+var Name//prompt for name
 Name = prompt("Who are you?");
+
 var Game = new function() { //Beginning of game function                                                           
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire', 38:'up',40:'down' };//declare variables for controls giving them names alongside the keyboard numbers for the keys
   this.keys = {}; //this key but left empty??
@@ -10,7 +11,7 @@ var Game = new function() { //Beginning of game function
     this.canvas = this.canvas_elem.getContext('2d');//
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');
-    this.playerScore =0//score stuff
+    this.playerScore =0//score (credit Nicole)
       
       
 //Here the control input is gathered
@@ -63,7 +64,7 @@ var GameScreen = function GameScreen(text,text2,callback) {//beginning of GameSc
     if(Game.keys['fire'] && callback) callback();
   };
 
-  this.render = function(canvas) {
+  this.render = function(canvas) {//styling for scores and other writing in game
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 40px stencil";
     var measure = canvas.measureText(text);  
@@ -93,7 +94,7 @@ var GameBoard = function GameBoard(level_number) {//beginning of GameBoard funct
     return sprite;
   };
   
-    var playerScore = 0;//score stuff
+    var playerScore = 0;//score variable (credit Nicole)
 
 this.render = function(canvas)	{//scorestuff
     canvas.font = "36px stencil";
@@ -116,15 +117,8 @@ this.render = function(canvas)	{//scorestuff
     return false;
   };
 
-  this.step = function(dt) { 
-      
-      //alienship
-      
-      //end alienship
-      
-      
-      
-      
+  this.step = function(dt) { //Movmenet for aliens
+        
     this.removed_objs = [];
     this.iterate(function() { 
         if(!this.step(dt)) this.die();
@@ -141,7 +135,7 @@ this.render = function(canvas)	{//scorestuff
     this.iterate(function() { this.draw(canvas); });
   };
 
-  this.collision = function(o1,o2) {
+  this.collision = function(o1,o2) {//collion function for missles
     return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
   };
@@ -153,7 +147,7 @@ this.render = function(canvas)	{//scorestuff
     });
   };
     
-  this.loadLevel = function(level) {
+  this.loadLevel = function(level) {//loads player sprites into game
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
@@ -180,7 +174,7 @@ this.render = function(canvas)	{//scorestuff
   this.loadLevel(Game.level_data[level_number]);
 };//end og GameBoard function
 
-var GameAudio = new function() {//beginning of GameAudio function
+var GameAudio = new function() {//beginning of GameAudio function loads them all in
   this.load_queue = [];
   this.loading_sounds = 0;
   this.sounds = {};

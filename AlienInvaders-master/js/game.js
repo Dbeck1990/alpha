@@ -9,9 +9,9 @@ var AlienFlock = function AlienFlock() {//Beginning of AlienFlock function
 
   this.die = function() {
     if(Game.board.nextLevel()) {
-      Game.loadBoard(new GameBoard(Game.board.nextLevel())); 
+      Game.loadBoard(new GameBoard(Game.board.nextLevel())); //loads the next level intill there are none left
     } else {
-      Game.callbacks['win']();
+      Game.callbacks['win']();//if there are none left then player wins
     }
   }
 
@@ -55,9 +55,9 @@ Alien.prototype.draw = function(canvas) {//Draws the Alien, using
 
 Alien.prototype.die = function() {//start of alien die function
      Game.playerScore+=10//score stuff
-  GameAudio.play('die');
-  this.flock.speed += 1;
-  this.board.remove(this);
+  GameAudio.play('die');//play audio for death
+  this.flock.speed += 1;//when alien dies increase speed
+  this.board.remove(this);//remove the alien 
 }//end of alien die function
 
 Alien.prototype.step = function(dt) {//start of movement function
@@ -69,7 +69,7 @@ Alien.prototype.step = function(dt) {//start of movement function
     }
     this.x += this.mx;
     this.mx = 0;
-    this.frame = (this.frame+5) % 6;
+    this.frame = (this.frame+5) % 6;//number of frames
     if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
     if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
   }
@@ -78,17 +78,14 @@ Alien.prototype.step = function(dt) {//start of movement function
 
 Alien.prototype.fireSometimes = function() {//alien shooting function
       if(Math.random()*100 < 10) {//when random number returns less than 10 fire.
-          GameAudio.play('alienFire');
-        this.board.addSprite('alienmissile',this.x + this.w/2 - Sprites.map.alienmissile.w/2,
+          GameAudio.play('alienFire');//playe audio
+        this.board.addSprite('alienmissile',this.x + this.w/2 - Sprites.map.alienmissile.w/2,//altered to have diffrent alien missle
                                       this.y + this.h, 
                                      { dy: 100 });
       }
     
 
 }//end of alien shooting function
-//alien big starts
-
-//alien big ends
 
 var Player = function Player(opts) { 
   this.reloading = 0;
@@ -107,12 +104,12 @@ Player.prototype.die = function() {//start of player die function
 Player.prototype.step = function(dt) {//start of control function(parses in information from engine.js)
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
-  if(Game.keys['up']) {this.y -=100 * dt;}
+  if(Game.keys['up']) {this.y -=100 * dt;}//extra controls
   if(Game.keys['down']) {this.y += 100 * dt;}
     
   if(this.x < 0) this.x = 0;//if statement to stop player leaving canvas on the x axis
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
-  if(this.y < 0) this.y = 0;
+  if(this.y < 0) this.y = 0;//stops player leaving y axixs
   if(this.y > Game.height-this.h) this.y = Game.height-this.h;
     
   this.reloading--;
@@ -162,7 +159,7 @@ var alienMissile = function alienMissile(opts) {//start of misssle function
    this.player = opts.player;
 }//end of missle function
 
-alienMissile.prototype.draw = function(canvas) {//start of missle draw
+alienMissile.prototype.draw = function(canvas) {//start of alien missle draw
    Sprites.draw(canvas,'alienmissile',this.x,this.y);
 }//end of missle draw
 
