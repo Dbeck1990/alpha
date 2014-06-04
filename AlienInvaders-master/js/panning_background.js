@@ -1,3 +1,5 @@
+//NONE OF THIS USED IN FINAL VERSION( ALLTAKEN FROM A TUTORIAL AT )
+
 /**
  * Define an object to hold all our images for the game so images
  * are only ever created once. This type of object is known as a
