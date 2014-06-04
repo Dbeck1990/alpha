@@ -5,39 +5,37 @@
   <title>Planet Strike</title> 
     <style>
       #gameboard { 
-	  background-color:grey; 
+	  background-image:url('http://i.imgur.com/wPlqB2T.gif');
 	  } 
       #game-wrapper { 
 	  margin:20px; width: 500px; 
 	  }
 	  #playerScore { 
-	  color:#376bd6; 
+	  color:black; 
 	  font-size:36px;
-	  font-family:"biteBullet";
+	  font-family:"stencil";
 	  }
       @font-face {
-        font-family:"biteBullet";
-          src: url("fonts/biteBullet.ttf");
+        font-family:"stencil";
+         
 }
 	  /*
 	  css used to change the colour of the background, the margin around the game canvas and the font used throughout the game
 	  */
   </style>
   <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
-  <script src='js/engine.js'></script>
+ <script src='js/engine.js'></script>
   <script src='js/game.js'></script>
   <script src='js/level.js'></script>
 </head>
-<body>
+<body >
   <div id='game-wrapper'>
   <div id='scoreboard'>
   <div id='playerScore'>
 </div>
     <canvas id='gameboard' width='600' height='560'>
 </canvas> 
-    <!-- 
-    size of the game canvas, needs to be suitable for multiple screens
-    -->
+   
   </div>
 </body>
 </html>

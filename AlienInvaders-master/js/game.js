@@ -3,7 +3,7 @@ var AlienFlock = function AlienFlock() {//Beginning of AlienFlock function
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
   this.hit = 1; this.lastHit = 0;
-  this.speed = 10;
+  this.speed = 30;
 
   this.draw = function() {};
 
@@ -46,6 +46,7 @@ var Alien = function Alien(opts) {//Start of Alien function(Object constructor?)
   this.flock = opts['flock'];
   this.frame = 0;
   this.mx = 0;
+    GameAudio.play('music');
 }//end of Alien function
 
 Alien.prototype.draw = function(canvas) {//Draws the Alien, using 
@@ -76,7 +77,8 @@ Alien.prototype.step = function(dt) {//start of movement function
 }//end of alien move function
 
 Alien.prototype.fireSometimes = function() {//alien shooting function
-      if(Math.random()*100 < 10) {//when random number returns less than 10 fire.
+      if(Math.random()*100 < 20) {//when random number returns less than 10 fire.
+          GameAudio.play('alienFire');
         this.board.addSprite('alienmissile',this.x + this.w/2 - Sprites.map.alienmissile.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
@@ -115,7 +117,7 @@ Player.prototype.step = function(dt) {//start of control function(parses in info
     
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 100) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 6) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
